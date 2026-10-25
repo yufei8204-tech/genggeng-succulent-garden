@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5ebcf">
+  <meta name="description" content="和小女孩、小猫一起，让街角的多肉小店重新营业。离线可玩的陪伴培育小游戏。">
+  <title>梗梗多肉培育馆 · 新手开店物语</title>
+  <link rel="icon" href="assets/cat-placeholder.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/lighting/runtime/genggeng-lighting.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="refinement.css">
+  <link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+  <aside class="desktop-note" aria-hidden="true"><span>GENG GENG GARDEN</span><h2>每一次陪伴，<br>都在解锁新的故事。</h2><p>九章开店物语 · 七本精灵卡册</p><i>从第一颗种子，到小店重新营业。</i></aside>
+  <main id="game" class="game" data-stage="0">
+    <div class="scene-background" aria-hidden="true"></div>
+    <div id="scene-light-host" aria-hidden="true"></div>
+    <div class="scene-mist" aria-hidden="true"></div>
+    <div id="effect-stage" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brand"><small>街角小店 · 试营业日记</small><h1>梗梗多肉培育馆<span>✿</span></h1></div>
+      <button id="sound-button" class="icon-button" title="声音设置" aria-label="关闭声音">♫</button>
+      <button id="settings-button" class="icon-button" title="游戏设置" aria-label="打开设置">☷</button>
+    </header>
+    <div class="resources"><span><i>●</i> <b id="coins">0</b> 金币</span><span><i>✦</i> <b id="stars">0</b> 星星</span><span><i>▤</i> <b id="card-count">0</b> 卡牌</span><span id="save-status">自动保存</span></div>
+    <section class="quest-panel" aria-label="今日小目标"><div><span class="quest-label">小店复兴计划</span><b id="quest-count">0 / 3</b></div><p id="quest-text">先培育一颗种子，让小店重新热闹起来。</p><div class="quest-track"><i id="quest-fill"></i></div></section>
+    <div id="shop-sign" class="shop-sign"><span class="sign-dot"></span><span id="shop-stage">等待第一片新叶</span></div>
+    <button id="play-map-button" class="play-map-button">玩法地图 <span>▦</span></button>
+    <section id="garden-view" class="garden-view" aria-label="培育花盆">
+      <div class="pot-shelf" id="pot-shelf">
+        <button class="pot-slot selected" data-pot="0" aria-label="选择第一个花盆"><span class="pot-number">01</span><span class="pot-topline">空花盆</span><div class="pot-art"><img src="assets/plants/plant-17.png" alt="笑脸花盆"></div><span class="pot-state">点击播种</span><span class="pot-progress"><i></i></span></button>
+        <button class="pot-slot locked" data-pot="1" aria-label="选择第二个花盆"><span class="pot-number">02</span><span class="pot-topline">等待解锁</span><div class="pot-art"><img src="assets/plants/plant-17.png" alt="笑脸花盆"></div><span class="pot-state">收获1张卡牌解锁</span><span class="pot-progress"><i></i></span></button>
+        <button class="pot-slot locked" data-pot="2" aria-label="选择第三个花盆"><span class="pot-number">03</span><span class="pot-topline">等待解锁</span><div class="pot-art"><img src="assets/plants/plant-17.png" alt="笑脸花盆"></div><span class="pot-state">收获3张卡牌解锁</span><span class="pot-progress"><i></i></span></button>
+      </div>
+    </section>
+    <button id="companion" class="companion" aria-label="和陪伴小猫互动"><img src="assets/companion-cat.png" alt="陪伴小猫"><span>陪你等一场发芽</span></button>
+    <div id="visitors" class="visitors" aria-hidden="true"><img src="assets/visitor.svg" alt=""><img src="assets/visitor.svg" alt=""></div>
+    <section class="care-panel">
+      <div class="dialogue"><span class="speaker">小店长</span><p id="dialogue-text">欢迎回来。今天也和小猫一起，照顾一点小小的希望吧。</p></div>
+      <div class="care-status"><span id="active-pot-label">01号花盆 · 等你播种</span><span id="growth-count">陪伴成长 0 / 4</span></div>
+      <div id="growth-track" class="growth-track"><i></i><i></i><i></i><i></i></div>
+      <div class="care-actions"><button id="water-button" disabled><span>♧</span>浇水<small>成长 +1</small></button><button id="sun-button" disabled><span>☀</span>阳光<small>成长 +1</small></button><button id="cat-button" disabled><span>♡</span>小猫陪伴<small>成长 +1</small></button></div>
+      <div class="primary-row"><button id="plant-button" class="primary-button" data-action="plant">选择种子 · 开始培育 <span>↗</span></button><button id="harvest-button" class="primary-button hide">收获这份小惊喜 <span>✦</span></button><button id="finish-button" class="finish-button hide" title="现场演示可直接完成等待">立即完成</button></div>
+    </section>
+    <nav class="bottom-nav" aria-label="游戏导航"><button class="active" data-tab="garden"><span>♧</span>培育馆</button><button data-tab="atlas"><span>▦</span>精灵图鉴<i id="atlas-badge"></i></button><button data-tab="cards"><span>▤</span>收藏卡牌</button><button data-tab="decor"><span>⌂</span>店铺装扮</button></nav>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <div id="overlay" class="overlay hide"><section id="modal-box" class="modal-box" role="dialog" aria-modal="true" aria-label="游戏弹窗"></section></div>
+    <section id="story" class="story">
+      <div class="story-top"><span>小女孩与小猫的开店物语</span><b>CHAPTER 01—09</b></div>
+      <div class="story-title"><p>今天，也陪你<br>等一场<span>发芽。</span></p><small>梗梗多肉培育馆</small></div>
+      <div class="story-bottom"><div class="story-eyebrow"><i></i> 9章新手旅程 · 40个温暖的小任务</div><h2 id="story-heading">从一颗种子，开启好多好多故事。</h2><p id="story-copy">学会照料，遇见奶龙，收藏表情包精灵。<br>兑换一颗发光种子，迎来软喵，再为小店换上新装。<br>小猫已经准备好啦——这次，换我们一起守住小店。</p><button id="start-game" class="primary-button">和小猫开启新手物语 <span>↗</span></button><small>可互动的新手引导演示 · 无需联网 · 进度自动保存</small></div>
+    </section>
+  </main>
+  <script src="game-core.js"></script>
+  <script src="vendor/genggeng-particles.js"></script>
+  <script src="assets/lighting/runtime/genggeng-lighting.js"></script>
+  <script src="vendor/h5-audio.js"></script>
+  <script src="vendor/tutorial-voice.js"></script>
+  <script src="tutorial.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

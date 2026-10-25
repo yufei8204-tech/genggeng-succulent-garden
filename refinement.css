@@ -1,0 +1,16 @@
+/* Final compositing: keep the opening illustration free of the game HUD. */
+.game:has(#story:not(.hide)) :is(.topbar,.resources,.quest-panel,.shop-sign,.garden-view,.companion,.care-panel,.bottom-nav,.visitors,.flower-decor){visibility:hidden}
+.visitors{top:56%;bottom:auto;left:5%;gap:13px}
+.visitors img{width:24px;height:40px;object-fit:contain;filter:drop-shadow(0 3px 1px #6e634125)}
+.visitors img:nth-child(2){width:21px;transform:scaleX(-1);filter:hue-rotate(50deg) drop-shadow(0 3px 1px #6e634125)}
+.companion{width:74px;height:74px}
+.companion img{width:74px;height:74px;object-fit:contain;image-rendering:auto}
+.companion>span{bottom:78px}
+.care-splash{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
+.care-splash i{position:absolute;left:50%;top:35%;font-style:normal;color:#e0a5b6;font-size:18px;animation:care-rise .8s ease-out both}
+.care-water i{width:6px;height:9px;border-radius:60% 60% 60% 4%;background:#9ac5ce;top:0;animation:care-drop .7s ease-in both;transform:rotate(-35deg)}
+.care-sun i{color:#dfbd62;font-size:16px}
+@keyframes care-rise{0%{opacity:0;transform:translate(0,15px) scale(.5)}30%{opacity:1}100%{opacity:0;transform:translate(var(--drift),-38px) scale(1.1)}}
+@keyframes care-drop{0%{opacity:0;translate:var(--drift) 0}25%{opacity:1}100%{opacity:0;translate:var(--drift) 65px}}
+@keyframes spirit-appear{from{opacity:0;transform:perspective(650px) translateY(25px) scale(.65) rotateY(-75deg)}to{opacity:1;transform:perspective(650px) rotateY(0)}}
+@media(max-height:740px){.story-title{top:13%}.story-title>p{font-size:31px}.story-bottom h2{font-size:17px}}
